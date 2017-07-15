@@ -7,4 +7,5 @@ urlpatterns = [
 	url(r'^Simulador', views.VistaSimulador),
 	url(r'^login', views.VistaLogin),
 	url(r'^compare', views.VistaCompare),
+	url(r'^chart', views.VistaGrafica),
 ]

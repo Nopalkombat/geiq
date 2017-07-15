@@ -6,6 +6,7 @@
   font-family: 'Droid Sans', sans-serif;
 
 }
+
 /************Login*****************/
 .fondo_login{
   position: absolute;
@@ -34,7 +35,7 @@
   position: relative;
   width: 100%;
   height: 100vh;
-  background: url('media/fondo_login.png');
+  background: url('../media/fondo_login.png');
   background-size: 100% 100%;
   -webkit-filter: blur(2px);
 }
@@ -653,11 +654,11 @@ color: #000000;
 
 .scroll{
   position: absolute;
-  width: 80%;
+  width: 85%;
   height: 90%;
   overflow: auto;
-  left: 20%;
-  top: 10%;
+  left: 15%;
+  top: 8%;
 
 }
 
@@ -665,11 +666,11 @@ color: #000000;
 .tar_form_res_scroll{
   background: white;
   box-shadow: 0 0 15px rgba(2,108,182,0.2);
-  width: 60%;
-  height: 45%;
+  width: 90%;
+  height: 60%;
   position: relative;
   float: left;
-  margin-left: 25%;
+  margin-left: 8%;
   margin-top: 40px;
   padding-bottom: 15px;
 }
@@ -677,23 +678,22 @@ color: #000000;
   position: relative;
   top: 20px;
   float: left;
-  margin-left: 10%;
-  margin-top: 5px;
-  width: 45%;
-  font-size: 18px;
+  margin-left: 2%;
+  margin-top: 2%;
+  width: 30%;
+  font-size: 14px;
   font-weight: 400;
   color: rgba(0,0,0,0.5);
-  padding-top: 10px;
+  padding-top: 5px;
 }
 .tar_form_res_scroll input{
   text-align: center;
   float: left;
   position: relative;
   top: 20px;
-  width: 30%;
-  margin-left: 5%;
+  width: 17%;
   height: 30px;
-  margin-top: 5px;
+  margin-top: 10px;
   border: none;
   outline: none;
   border-bottom: 1px solid rgba(2,108,182,0.6);
@@ -722,14 +722,15 @@ color: #000000;
 
 /**tar_form_var_compare**/
 .tar_form_var_compare{
+  overflow:auto;
   background: white;
   box-shadow: 0 0 15px rgba(2,108,182,0.2);
   width: 20%;
-  height: 83%;
+  height: 80%;
   position: relative;
-  top: 15%;
+  top: 14%;
   float: left;
-  margin-left: 5%;
+  margin-left: 1%;
   padding-bottom: 15px;
 }
 .tar_form_var_compare h2{
@@ -783,8 +784,8 @@ color: #000000;
   position: absolute;
   width: 136px;
   height: 31px;
-  left: 8%;
-  top: 70px;
+  left: 4%;
+  top: 7%;
   font-family: Roboto;
   font-weight: 500;
   line-height: normal;
@@ -809,8 +810,8 @@ color: #000000;
 }
 .contenido_compare{
   position: absolute;
-  width: 90%;
-  height: 80%;
+  width: 85%;
+  height: 92%;
   left: 15%;
   background: #EBEBEB
 
@@ -820,15 +821,14 @@ color: #000000;
   width: 10%;
   height: 40px;
   position: absolute;
-  margin-top:  5%;
+  margin-top:  2%;
   margin-right: 10%;
   outline: none;
   border: 2px solid rgba(29,91,171,1);
-  background: transparent;
   color: rgba(29,91,171,1);
   font-weight: 600;
   font-size: 14px;
-  top: 95%;
+  top: 97%;
   left: 80%;
   -webkit-transition: 0.5s all;
 }
@@ -837,4 +837,67 @@ color: #000000;
   background: rgba(29,91,171,1);
   color: white;
   cursor: pointer;
+}
+
+#tar_errorse{
+  float: left;
+  margin-top: 60px;
+  margin-left: 10%;
+  width: 80%;
+  height: auto;
+  background: white;
+  box-shadow: 0 0 15px rgba(155,155,155,0.2);
+  margin-bottom: 40px;
+}
+#tar_errorse table, .tar_form_var_compare table{
+  margin-top: 30px;
+  width: 90%;
+  border-collapse: collapse;
+  margin-left: 5%;
+  text-align: center;
+  margin-bottom: 30px;
+}
+#tar_errorse th, .tar_form_var_compare th{
+  background: rgba(10,66,135,1);
+  font-size: 16px;
+  font-weight: 600;
+  text-align: center;
+  color: white;
+  padding-top: 2%;
+  padding-bottom: 2%;
+}
+
+#back{
+  width: 10%;
+  height: 40px;
+  position: absolute;
+  margin-top:  2%;
+  margin-right: 10%;
+  outline: none;
+  border: 2px solid rgba(29,91,171,1);
+  color: rgba(29,91,171,1);
+  font-weight: 600;
+  font-size: 14px;
+  top: 90%;
+  left: 80%;
+  -webkit-transition: 0.5s all;
+}
+#back:hover{
+  border: 2px solid white;
+  background: rgba(29,91,171,1);
+  color: white;
+  cursor: pointer;
+}
+
+
+.contenedor_chart{
+  background: white;
+  box-shadow: 0 0 15px rgba(2,108,182,0.2);
+  width: 80%;
+  height: 80%;
+  position: absolute;
+  float: left;
+  margin-left: 17%;
+  margin-top: 40px;
+  padding-bottom: 15px;
 }

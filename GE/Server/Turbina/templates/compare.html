@@ -1,4 +1,11 @@
 {% load staticfiles %}
+<script type="text/javascript">
+	if(localStorage.getItem("usuarioGE") != ""){
+		//alert(localStorage.getItem("usuarioGE"));
+	}else{
+		window.location("login");
+	}
+</script>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,6 +14,11 @@
 	  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	  <meta http-equiv="X-UA-Compatible" content="ie=edge">
 	  <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
+	  <style media="screen">
+			body{
+				overflow: hidden;
+			}
+		</style>
 	  <script type="text/javascript" src="{% static 'js/jquery-3.2.0.js' %}"></script>
 	  <script type="text/javascript" src="{% static 'js/funciones.js' %}"></script>
 	  <script type="text/javascript" src="{% static 'js/highcharts.js' %}"></script>
@@ -19,69 +31,58 @@
 		</div>
 		<div class="menu">
 		  <img class="img_perfil" src="{% static 'media/geLogo.png' %}" alt="" id="img_apo">
-		  <div class="change_img" id="btn_img">
-		    <img src="{% static 'media/edit.png' %}">
-		    <form id="form_img">
-		      <input type="file" name="file" style="display: none;" id="file">
-		    </form>
-		  </div>
 		  <ul>
 		    <li onclick="window.location='Simulador';"><img src="{% static 'media/home.png' %}" alt=""><h5>Home</h5></li>
 		    <li onclick="window.location='compare';"><img src="{% static 'media/chart.png' %}" alt=""><h5>Compare</h5></li>
-		    <li onclick="window.location='logout.html';"><img src="{% static 'media/exit.png' %}" alt=""><h5>Logout</h5></li>
+		    <li onclick="logout()"><img src="{% static 'media/exit.png' %}" alt=""><h5>Logout</h5></li>
 		  </ul>
 		</div>
 
 	  <div class="contenido_compare" >
 			<h2 id="ite">Iterations</h2>
 	    <div id = "tar_compare" class="tar_form_var_compare">
-			 <table id = "tabla_errorse">
+	    	<table id = "tabla_errorse">
 		        <tr>
 		          <th width="40%">#Iteracion</th>
 		          <th width="60%">Fecha</th>
 		        </tr>
+
 		      </table>
-	      <button onclick="calcular_pronostico('<?php echo $_GET['tipo']; ?>');">Calcular</button>
 	    </div>
-			<div class="scroll">
-				<div class="tar_form_res_scroll">
-				<h3	id="itera">Iteration #</h3>
-				<h2>load.G_air</h2><input type          ="text" readonly id="load">
-				<h2>comp.T_stag_out</h2><input type     ="text" readonly id="compt">
-				<h2>comp.p_stag_out</h2><input type     ="text" readonly id ="compp">
-				<h2>turbine.T_stage_out</h2><input type ="text" readonly id ="turbinet">
-				<h2>turbine.p_stage_out</h2><input type ="text" readonly id ="turbinep">
-		    </div>
-		    <div class="tar_form_res_scroll">
-				<h2>load.G_air</h2><input type          ="text" readonly id="load2">
-				<h2>comp.T_stag_out</h2><input type     ="text" readonly id="compt2">
-				<h2>comp.p_stag_out</h2><input type     ="text" readonly id ="compp2">
-				<h2>turbine.T_stage_out</h2><input type ="text" readonly id ="turbinet2">
-				<h2>turbine.p_stage_out</h2><input type ="text" readonly id ="turbinep2">
-		    </div>
-				<div class="tar_form_res_scroll">
-			 <h2>load.G_air</h2><input type          ="text" readonly id="load2">
-			 <h2>comp.T_stag_out</h2><input type     ="text" readonly id="compt2">
-			 <h2>comp.p_stag_out</h2><input type     ="text" readonly id ="compp2">
-			 <h2>turbine.T_stage_out</h2><input type ="text" readonly id ="turbinet2">
-			 <h2>turbine.p_stage_out</h2><input type ="text" readonly id ="turbinep2">
-			 </div>
+			<div id = "div-scroll" class="scroll">
+				<!-- <div class="tar_form_res_scroll">
+					<div class="scroll1">
+						<h3	id="itera">Iteration #</h3>
+						<h2>Total pressure</h2><input type        ="text" id="atmosferap">
+						<h2>Total temperature</h2><input type     ="text" id="atmosferat">
+						<h2>Pressure ratio out/in</h2><input type                ="text" id="sigmain">
+						<h2>Pressure ratio</h2><input type                  ="text" id="compic">
+					</div>
+					<div class="scroll1">
+						<h2>Polytropic efficiency</h2><input type             ="text" id="competa">
+						<h2>Combustion efficiency</h2><input type      ="text" id="combetaburn">
+						<h2>Low Heating Value</h2><input type           ="text" id="combqn">
+						<h2>Output total temperature</h2><input type    ="text" id="combtstagout">
+					</div>
+					<div class="scroll1">
+						<h2>Turbine polytropic efficiency</h2><input type         ="text" id="turbineeta">
+						<h2>Turbine output total pressure</h2><input type         ="text" id="turbinep">
+						<h2>Power demand</h2><input type                 ="text" id="load">
+						<h2>Outlet pressure ratio out/in</h2><input type               ="text" id="sigmaout">
+					</div>
+					<div class="scroll1">
+						<h2>Total temperature of gases at inlet</h2><input type  ="text" id="regenin">
+						<h2>Total temperature of gases at outlet</h2><input type ="text" id="regenout">
+					</div>
+
+				</div> -->
 			</div>
-			<button type="button" name="vchart" id="vchart">View Chart</button>
+			<button onclick="window.location = 'chart';" type="button" name="vchart" id="vchart">View Chart</button>
 	    <div class="tar_tablas"></div>
 	    <div class="tar_tablas"></div>
 	    <div class="tar_tablas"></div>
 	    <div class="tar_tablas"></div>
 	    <div class="tar_tablas"></div>
     </div>
-
-     <script>
-    	/*$('#tabla_errorse').append('<tr><td><a href="#">1</a></td><td>fecha1</td></tr>')
-	  	$('#tabla_errorse').append('<tr><td><a href="#">2</a></td><td>fecha2</td></tr>')
-	    $('#tabla_errorse').append('<tr><td><a href="#">3</a></td><td>fecha3</td></tr>')
-	    $('#tabla_errorse').append('<tr><td><a href="#">4</a></td><td>fecha4</td></tr>')*/
-    </script>
-
-    
 </body>
 </html>

@@ -179,3 +179,66 @@ def VistaIteraciones(request):
 			"mensaje":"No hay iteraciones"
 		}
 		return HttpResponse(json.dumps(data))
+
+@csrf_exempt
+def VistaIteracion(request):
+	if request.method == "POST":
+		datos = request.POST.get("json")
+		datos = json.loads(datos)
+		usuario = datos["username"]
+		idIt = datos["id"]
+		usuario = models.Usuario.objects.filter(username=usuario)
+		if len(usuario) is not 0:
+			iteraciones = models.Iteracion.objects.filter(usuario=usuario[0], id=idIt)
+			if len(iteraciones) is not 0:
+				data = {
+					"estado": 1,
+					"id":iteraciones[0].id,
+					"atmosferap" : str(iteraciones[0].atmosferap),
+					"atmosferat" : str(iteraciones[0].atmosferat),
+					"sigmain" : str(iteraciones[0].sigmain),
+					"compic" : str(iteraciones[0].compic),
+					"competa" : str(iteraciones[0].competa),
+					"combetaburn" : str(iteraciones[0].combetaburn),
+					"combqn" : str(iteraciones[0].combqn),
+					"combtstagout" : str(iteraciones[0].combtstagout),
+					"turbineeta" : str(iteraciones[0].turbineeta),
+					"turbinep" : str(iteraciones[0].turbinep),
+					"load" : str(iteraciones[0].load),
+					"sigmaout" : str(iteraciones[0].sigmaout),
+					"regenin" : str(iteraciones[0].regenin),
+					"regenout" : str(iteraciones[0].regenout),
+				}
+				return HttpResponse(json.dumps(data))
+			else:
+				data = {
+					"estado":0,
+					"mensaje":"No hay iteraciones"
+				}
+				return HttpResponse(json.dumps(data))
+
+@csrf_exempt
+def VistaResultado(request):
+	if request.method == "POST":
+		datos = request.POST.get("json")
+		datos = json.loads(datos)
+		idIt = datos["id"]
+		iteracion = models.Iteracion.objects.filter(id=idIt)
+		if len(iteracion) is not 0:
+			iteraciones = models.ResultadoIteracion.objects.filter(iteracion=iteracion[0])
+			if len(iteraciones) is not 0:
+				data = {
+					"estado": 1,
+					"load" : str(iteraciones[0].load),
+					"compt" : str(iteraciones[0].compt),
+					"compp" : str(iteraciones[0].compp),
+					"turbinet" : str(iteraciones[0].turbinet),
+					"turbinep" : str(iteraciones[0].turbinep)
+				}
+				return HttpResponse(json.dumps(data))
+			else:
+				data = {
+					"estado":0,
+					"mensaje":"No hay iteraciones"
+				}
+				return HttpResponse(json.dumps(data))

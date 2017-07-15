@@ -1,4 +1,106 @@
+var yaPuestos = [];
+
+function cargarItems()
+{
+  yaPuestos = JSON.parse(localStorage.getItem("arregloElementos"));
+  if(yaPuestos.length != 0)
+  {
+    pintarElementos();
+  }
+}
+
+function cargarGrafica()
+{
+  yaPuestos = JSON.parse(localStorage.getItem("arregloElementos"));
+  if(yaPuestos.length == 0)
+  {
+    alert("No hay elementos para graficar");
+    window.location = "compare";
+  }
+  else
+  {
+    elementos = [];
+    yaPuestos.forEach(function(element){
+      element = JSON.parse(element);
+      jsonData = {
+        id : element.id
+      }
+      jsonData = JSON.stringify(jsonData);
+      $.ajax({
+        url:"/API/resultado/",
+        type:"POST",
+        data:{json: jsonData},
+        success:function(data){
+          dataa = JSON.parse(data);
+          arrayElementos = [];
+          arrayElementos.push(parseFloat(dataa.load));
+          arrayElementos.push(parseFloat(dataa.compt));
+          arrayElementos.push(parseFloat(dataa.compp));
+          arrayElementos.push(parseFloat(dataa.turbinet));
+          arrayElementos.push(parseFloat(dataa.turbinep));
+          jsonElement = {
+            name : element.id,
+            data : arrayElementos
+          }
+          elementos.push(jsonElement);
+          console.log(JSON.stringify(elementos));
+          Highcharts.chart('chart', {
+      chart: {
+          type: 'area'
+      },
+      title: {
+          text: 'Últimas dos Iteraciones'
+      },
+      subtitle: {
+          text: ''
+      },
+      xAxis: {
+          allowDecimals: false,
+          labels: {
+              formatter: function () {
+                  return this.value; // clean, unformatted number for year
+              }
+          }
+      },
+      yAxis: {
+          title: {
+              text: 'Valores'
+          },
+          labels: {
+              formatter: function () {
+                  return this.value / 1000 + 'k';
+              }
+          }
+      },
+      tooltip: {
+          pointFormat: '{series.name} produced <b>{point.y:,.0f}</b><br/>warheads in {point.x}'
+      },
+      plotOptions: {
+          area: {
+              pointStart: 1940,
+              marker: {
+                  enabled: false,
+                  symbol: 'circle',
+                  radius: 2,
+                  states: {
+                      hover: {
+                          enabled: true
+                      }
+                  }
+              }
+          }
+      },
+      series: elementos
+  });
+        }
+      });
+    });
+  }
+}
+
 function cargarIteraciones(){
+  cargarItems();
+  yaPuestos = [];
   jsonData = {
       username:localStorage.getItem("usuarioGE")
     }
@@ -10,9 +112,107 @@ function cargarIteraciones(){
     data:{json:jsonData},
     success: function(data){
       data = JSON.parse(data);
+      if(data.estado == 1){
+        for(i = 0; i < data.iteraciones.length; i++){
+          $('#tabla_errorse').append('<tr onclick="cargarIteracion(' + data.iteraciones[i].id + ')"><td>' + data.iteraciones[i].id + '</td><td>' + data.iteraciones[i].fecha +'</td></tr>');
+        }
+      }
     }
   });
 }
+
+function cargarIteracion(id){
+  bandera = false;
+  index = 0;
+  yaPuestos.forEach(function(element){
+    elementp = JSON.parse(element);
+    if(elementp.id == id){
+      bandera = true;
+      index = yaPuestos.indexOf(element);
+    }
+  });
+  if(bandera == false){
+    addElemento(id);
+    
+  }
+  else
+  {
+    yaPuestos.splice(index, 1);
+    pintarElementos();
+    localStorage.setItem("arregloElementos", JSON.stringify(yaPuestos)); 
+  }
+}
+
+function addElemento(id){
+  jsonData = {
+    id:id,
+    username:localStorage.getItem("usuarioGE")
+  }
+  jsonData = JSON.stringify(jsonData);
+  $.ajax({
+    url:"/API/iteracion/",
+    type:"POST",
+    data:{json:jsonData},
+    success: function(data){
+      data = JSON.parse(data);
+      jsonData = {
+        id:data.id,
+        atmosferap:data.atmosferap,
+        atmosferat:data.atmosferat,
+        sigmain:data.sigmain,
+        compic:data.compic,
+        competa:data.competa,
+        combetaburn:data.combetaburn,
+        combqn:data.combqn,
+        combtstagout:data.combtstagout,
+        turbineeta:data.turbineeta,
+        turbinep:data.turbinep,
+        load:data.load,
+        sigmaout:data.sigmaout,
+        regenin:data.regenin,
+        regenout:data.regenout  
+      }
+      jsonData = JSON.stringify(jsonData);
+      yaPuestos.push(jsonData);
+      localStorage.setItem("arregloElementos", JSON.stringify(yaPuestos)); 
+      pintarElementos();
+    }
+  });
+}
+
+function pintarElementos(){
+  $("#div-scroll").empty();
+  yaPuestos.forEach(function(element){
+    element = JSON.parse(element);
+    $("#div-scroll").append('<div class="tar_form_res_scroll">'+
+      '<div class="scroll1">'+
+      '<h3 id="itera">Iteration #' + element.id + '</h3>' +
+      '<h2>Total pressure</h2><input type        ="text" id="atmosferap" value = "' + element.atmosferap + '">' +
+      '<h2>Total temperature</h2><input type     ="text" id="atmosferat" value = "' + element.atmosferat + '">' +
+      '<h2>Pressure ratio out/in</h2><input type                ="text" id="sigmain" value = "' + element.sigmain + '">' +
+      '<h2>Pressure ratio</h2><input type                  ="text" id="compic" value = "' + element.compic + '">' +
+      '</div>' +
+      '<div class="scroll1">' +
+      '<h2>Polytropic efficiency</h2><input type             ="text" id="competa" value = "' + element.competa + '">' +
+      '<h2>Combustion efficiency</h2><input type      ="text" id="combetaburn" value = "' + element.combetaburn + '">' +
+      '<h2>Low Heating Value</h2><input type           ="text" id="combqn" value = "' + element.combqn + '">' +
+      '<h2>Output total temperature</h2><input type    ="text" id="combtstagout" value = "' + element.combtstagout + '">' +
+      '</div>' +
+      '<div class="scroll1">' +
+      '<h2>Turbine polytropic efficiency</h2><input type         ="text" id="turbineeta" value = "' + element.turbineeta + '">' +
+      '<h2>Turbine output total pressure</h2><input type         ="text" id="turbinep" value = "' + element.turbinep + '">' +
+      '<h2>Power demand</h2><input type                 ="text" id="load" value = "' + element.load + '">' +
+      '<h2>Outlet pressure ratio out/in</h2><input type               ="text" id="sigmaout" value = "' + element.sigmaout + '">' +
+      '</div>' +
+      '<div class="scroll1">' +
+      '<h2>Total temperature of gases at inlet</h2><input type  ="text" id="regenin" value = "' + element.regenin + '">' +
+      '<h2>Total temperature of gases at outlet</h2><input type ="text" id="regenout" value = "' + element.regenout + '">' +
+      '</div>' +
+
+      '</div>');
+  });
+}
+
 function simular(){
     atmosferap = $("#atmosferap").val();
     atmosferat = $("#atmosferat").val();
@@ -80,7 +280,7 @@ function simular(){
       $("#lturbinet").val(lastData["turbine.T_stage_out"]);
       $("#lturbinep").val(lastData["turbine.p_stage_out"]);
 
-      google.charts.load('current', {'packages':['line']});
+      /*google.charts.load('current', {'packages':['line']});
       google.charts.setOnLoadCallback(drawChart);
 
       function drawChart() {
@@ -104,7 +304,65 @@ function simular(){
         var chart = new google.charts.Line(document.getElementById('curve_chart'));
 
         chart.draw(datos, google.charts.Line.convertOptions(options));
-		  }
+		  }*/
+
+      Highcharts.chart('container', {
+    chart: {
+        type: 'area'
+    },
+    title: {
+        text: 'Últimas dos Iteraciones'
+    },
+    subtitle: {
+        text: ''
+    },
+    xAxis: {
+        allowDecimals: false,
+        labels: {
+            formatter: function () {
+                return this.value; // clean, unformatted number for year
+            }
+        }
+    },
+    yAxis: {
+        title: {
+            text: 'Valores'
+        },
+        labels: {
+            formatter: function () {
+                return this.value / 1000 + 'k';
+            }
+        }
+    },
+    tooltip: {
+        pointFormat: '{series.name} produced <b>{point.y:,.0f}</b><br/>warheads in {point.x}'
+    },
+    plotOptions: {
+        area: {
+            pointStart: 1940,
+            marker: {
+                enabled: false,
+                symbol: 'circle',
+                radius: 2,
+                states: {
+                    hover: {
+                        enabled: true
+                    }
+                }
+            }
+        }
+    },
+    series: [{
+        name: 'Actual',
+        data: [parseFloat(data["load.G_air"]), parseFloat(data["comp.T_stag_out"]), parseFloat(data["comp.p_stag_out"]),
+        parseFloat(data["turbine.T_stage_out"]), parseFloat(data["turbine.p_stage_out"])]
+    }, {
+        name: 'Ultima',
+        data: [parseFloat(lastData["load.G_air"]), parseFloat(lastData["comp.T_stag_out"]), parseFloat(lastData["comp.p_stag_out"]),
+        parseFloat(lastData["turbine.T_stage_out"]), parseFloat(lastData["turbine.p_stage_out"])]
+    }]
+});
+
     }
 	});
 }
@@ -558,4 +816,10 @@ function calculoMejorPronostico(matriz, elementos, posicion, posicionse)
     mejorPronosticoA[i] = matriz[posicion][i];
     seA[i] = matriz[posicionse][i];
   }
+}
+
+
+function logout(){
+  localStorage.removeItem("usuarioGE");
+  window.location("login");
 }

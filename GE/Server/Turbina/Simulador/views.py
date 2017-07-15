@@ -13,3 +13,7 @@ def VistaLogin(request):
 def VistaCompare(request):
 	context = []
 	return render(request, 'compare.html', context)
+
+def VistaGrafica(request):
+	context = []
+	return render(request, 'chart.html', context)

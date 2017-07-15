@@ -10,4 +10,6 @@ urlpatterns = [
 	url(r'^login', views.VistaLogin),
 	url(r'^registro', views.VistaRegistro),
 	url(r'^iteraciones', views.VistaIteraciones),
+	url(r'^iteracion', views.VistaIteracion),
+	url(r'^resultado', views.VistaResultado),
 ]

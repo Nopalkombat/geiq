@@ -1,4 +1,11 @@
 {% load staticfiles %}
+<script type="text/javascript">
+	if(localStorage.getItem("usuarioGE") != ""){
+		//alert(localStorage.getItem("usuarioGE"));
+	}else{
+		window.location("login");
+	}
+</script>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,7 +19,8 @@
 	  <script type="text/javascript" src="{% static 'js/highcharts.js' %}"></script>
 	  <script type="text/javascript" src="{% static 'js/highcharts-more.js' %}"></script>
 	  <script type="text/javascript" src="{% static 'js/solid-gauge.js' %}"></script>
-	  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+	  <script src="https://code.highcharts.com/highcharts.js"></script>
+	  <script src="https://code.highcharts.com/modules/exporting.js"></script>
 </head>
 <body>
 		<div class="img_menu">
@@ -20,16 +28,11 @@
 		</div>
 		<div class="menu">
 		  <img class="img_perfil" src="{% static 'media/geLogo.png' %}" alt="" id="img_apo">
-		  <div class="change_img" id="btn_img">
-		    <img src="{% static 'media/edit.png' %}">
-		    <form id="form_img">
-		      <input type="file" name="file" style="display: none;" id="file">
-		    </form>
-		  </div>
+		  
 		  <ul>
 		    <li onclick="window.location='Simulador';"><img src="{% static 'media/home.png' %}" alt=""><h5>Home</h5></li>
 		    <li onclick="window.location='compare';"><img src="{% static 'media/chart.png' %}" alt=""><h5>Compare</h5></li>
-		    <li onclick="window.location='logout.html';"><img src="{% static 'media/exit.png' %}" alt=""><h5>Logout</h5></li>
+		    <li onclick="logout()"><img src="{% static 'media/exit.png' %}" alt=""><h5>Logout</h5></li>
 		  </ul>
 		</div>
 
@@ -75,7 +78,7 @@
 			<h2>turbine.p_stage_out</h2><input type ="text" readonly id ="lturbinep">
 	    </div>
 	    <div class="tar_tablas">
-		     <div id="curve_chart" style="width: 900px; height: 500px"></div>
+	    	<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
 	    </div>
 	    
     </div>
