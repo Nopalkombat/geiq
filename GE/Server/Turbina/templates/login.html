@@ -1,0 +1,70 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
+  <script type="text/javascript" src="{% static 'js/jquery-3.2.0.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/funciones.js' %}"></script>
+  <title>Login</title>
+</head>
+<body>
+  <div class="notificaciones_login" id="notificaciones_login">
+    <h1>Texto</h1>
+  </div>
+  <div class="fondo_login"></div>
+  <div class="contenido_login"></div>
+  <div class="header_login">
+    <div class="icono_login">
+      <img src="{% static 'media/geLogo.png' %}" alt="">
+    </div>
+    <div id="login_contenedor">
+      <div class="registro_login">
+        <h1>No estas registrado?</h1>
+        <button id="registrar_form">Registrar</button>
+      </div>
+      <div class="formulario_login">
+        <form method="POST" onsubmit="return false" id="form_login">
+          <div class="datos_form">
+            <img src="{% static 'media/user.png' %}" alt="">
+            <input type="text" name="username_login" placeholder="Username">
+          </div>
+          <div class="datos_form">
+            <img src="{% static 'media/password.png' %}" alt="">
+            <input type="password" name="password_login" placeholder="Password">
+          </div>
+            <input type="submit" id="btn_login" value="Login">
+        </form>
+      </div>
+    </div>
+    <div id="registro_contenedor" class="ocultar_form">
+      <div class="registro_login">
+        <h1>Ya tienes cuenta?</h1>
+        <button id="login_form">Login</button>
+      </div>
+      <div class="formulario_login">
+        <form method="POST" onsubmit="return false" id="form_registro">
+          <div class="datos_form">
+            <img src="{% static 'media/user.png' %}" alt="">
+            <input type="text" name ="username_registro" placeholder="Username">
+          </div>
+          <!-- <div class="datos_form">
+            <img src="media/mail.png" alt="">
+            <input type="email" name="email_registro" placeholder="Email">
+          </div> -->
+          <div class="datos_form">
+            <img src="{% static 'media/password.png' %}" alt="">
+            <input type="password" name="password_registro" placeholder="Password">
+          </div>
+          <div class="datos_form">
+            <img src="{% static 'media/password.png' %}" alt="">
+            <input type="password" name="confirmar_password_registro" placeholder="Confirmar Password">
+          </div>
+            <input type="submit" id="btn_registrar" value="Regístrate">
+        </form>
+      </div>
+    </div>
+</body>
+</html>

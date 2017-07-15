@@ -1,0 +1,651 @@
+@import url('https://fonts.googleapis.com/css?family=Droid+Sans');
+
+*{
+  padding: 0;
+  margin: 0;
+  font-family: 'Droid Sans', sans-serif;
+}
+/************Login*****************/
+.fondo_login{
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  /* background: #1D5BAB; */
+  background: rgba(29,91,171,0.1);
+  z-index: 1;
+}
+
+#form_login{
+  -moz-box-shadow: 1px 2px 3px rgba(0,0,0,.5);
+  -webkit-box-shadow: 1px 2px 3px rgba(0,0,0,.5);
+  box-shadow: 1px 2px 3px rgba(0,0,0,.5);
+  background: #0C4287;
+}
+#form_registro{
+  -moz-box-shadow: 1px 2px 3px rgba(0,0,0,.5);
+  -webkit-box-shadow: 1px 2px 3px rgba(0,0,0,.5);
+  box-shadow: 1px 2px 3px rgba(0,0,0,.5);
+  background: #0C4287;
+}
+
+.contenido_login{
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background: url('media/fondo_login.png');
+  background-size: 100% 100%;
+  -webkit-filter: blur(2px);
+}
+.header_login{
+  top: 0;
+  z-index: 11;
+  position: absolute;
+  width: 100%;
+  height: 20vh;
+}
+  .icono_login{
+    position: relative;
+    float: left;
+    width: 70%;
+    text-align: center;
+  }
+  .icono_login img{
+    margin-top: 5%;
+    margin-left: 40%;
+    width: 13%;
+  }
+  .registro_login{
+    margin-top: 4%;
+    position: absolute;
+    float: right;
+    right: 0;
+    width: 30%;
+  }
+  .registro_login h1{
+    margin-left: 20%;
+    position: relative;
+    float: left;
+    font-size: 14px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.8);
+  }
+  .registro_login button{
+    outline: none;
+    border: none;
+    margin-top: -6px;
+    margin-left: 5%;
+    width: 25%;
+    height: 35px;
+    border-radius: 3px;
+    color: rgba(255,255,255,0.8);
+    background: rgba(22,27,41,0.8);
+  }
+  .registro_login button:hover{
+    opacity: 0.9;
+    cursor: pointer;
+  }
+.formulario_login{
+  position: absolute;
+  z-index: 11;
+  top: 30vh;
+  width: 30%;
+  height: 60vh;
+  left: 35%;
+}
+
+  .datos_form{
+    position: relative;
+    width: 100%;
+    height: 50px;
+    margin-top: 10px;
+  }
+  .datos_form img{
+    margin-top: 10px;
+    width: 7%;
+    -webkit-filter: invert(20%);
+  }
+  .datos_form ::-webkit-input-placeholder{
+    color: rgba(255,255,255,0.5);
+  }
+  .datos_form input:-webkit-autofill {
+    -webkit-box-shadow:0 0 0 50px white inset;
+  }
+  .datos_form input, select{
+    position: relative;
+    margin-left: 2%;
+    padding-bottom: 15px;
+    outline: none;
+    color: rgba(255,255,255,0.8);
+    background: transparent;
+    border: none;
+    width: 80%;
+    top: -10px;
+    font-size: 14px;
+    border-bottom: 1px solid rgba(255,255,255,0.4);
+  }
+  .datos_form select option{
+    background: rgba(41,128,185,1);
+    color: rgba(255,255,255,0.6);
+  }
+  .formulario_login input[type="submit"]{
+    margin-left: 60%;
+    margin-top: 10%;
+    outline: none;
+    border: none;
+    border-radius: 3px;
+    width: 30%;
+    font-size: 14px;
+    height: 40px;
+    color: white;
+    background: rgb(2,108,182);
+  }
+  .formulario_login input[type="submit"]:hover{
+    cursor: pointer;
+    opacity: 0.8;
+  }
+  .formulario_login h3{
+    width: 140px;
+    font-size: 14px;
+    margin-left: 30%;
+    margin-top: 30vh;
+    color: rgba(255,255,255,0.4);
+    font-weight: 400;
+    border-bottom: 1px dashed;
+    padding-bottom: 2px;
+  }
+  .formulario_login h3:hover{
+    cursor: pointer;
+  }
+  .mostrar_form{
+    transition: 0.5s;
+    visibility: visible;
+    opacity: 1;
+  }
+  .ocultar_form{
+    transition: 0.5s;
+    visibility: hidden;
+    opacity: 0;
+  }
+  .notificaciones_login{
+    position: fixed;
+    top: -20%;
+    width: 100%;
+    right: 0%;
+    background: rgba(36,84,115,1);
+    height: 10%;
+    border-radius: 5px;
+    box-shadow: 0 1px 5px 0px rgba(0,0,0,0.8);
+    z-index: 99999;
+    text-align: center;
+  }
+  .notificaciones_login h1{
+    margin-top: 1%;
+    color: white;
+    font-size: 26px;
+    font-weight: 400;
+  }
+
+/*************Index*************/
+.menu{
+  position: fixed;
+  float: left;
+  /*background: rgba(44,125,115,1);*/
+  background: rgba(0,0,0,0.5);
+  left: 0;
+  top: 0;
+  width: 15%;
+  height: 100%;
+  text-align: center;
+  z-index: -1;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+.img_menu{
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 15%;
+  height: 100%;
+  z-index: -1;
+  overflow: hidden;
+}
+.img_menu img{
+  position: relative;
+  width: 100%;
+  top: -4%;
+  left: -10%;
+  -webkit-filter: blur(2px);
+}
+.img_perfil{
+  margin-top: 15%;
+  border-radius: 50%;
+  width: 50%;
+  height: 15%;
+}
+.menu h1{
+  font-weight: 400;
+  color: white;
+  font-size: 24px;
+  margin-top: 5%;
+}
+.menu h2{
+  font-weight: 400;
+  color: rgba(255,255,255,0.8);
+  font-size: 16px;
+}
+.menu ul{
+  margin-top: 20%;
+  height: 15%;
+  width: 100%;
+}
+.menu li{
+  color: white;
+  width: 100%;
+  height: 50%;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+  list-style: none;
+}
+.menu li img{
+  margin-top: 6%;
+  float: left;
+  width: 12.5%;
+  position: relative;
+  left: 8%;
+}
+.menu li:hover{
+  cursor: pointer;
+  background-color: rgba(155,155,155,0.1);
+}
+.menu li h5{
+  padding-top: 9%;
+  font-weight: 400;
+  font-size: 16px;
+}
+.img_perfil:hover + .change_img{
+  visibility: visible;
+}
+.change_img{
+  position: fixed;
+  top: 100px;
+  left: 9%;
+  width: 30px;
+  height: 30px;
+  background: rgba(44,125,115,1);
+  border-radius: 50%;
+  visibility: hidden;
+}
+.change_img:hover{
+  cursor: pointer;
+  visibility: visible;
+}
+.change_img img{
+  margin-top: 5px;
+  margin-left: 5%;
+  width: 60%;
+}
+/*** Contenido ********/
+.contenido{
+  position: absolute;
+  left: 15%;
+  background: rgba(155,155,155,0.2);
+  height: 100%;
+  width: 85%;
+}
+.serie_dato{
+  position: relative;
+  top: 50px;
+  width: 20%;
+  margin-left: 5%;
+  height: 275px;
+  background: white;
+  float: left;
+  border: none;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  -webkit-transition: 0.5s all;
+}
+.serie_dato img{
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.datos_serie_tar{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  background: rgba(0,0,0,0.4);
+}
+.datos_serie_tar h1{
+  color: white;
+  font-size: 22px;
+}
+.datos_serie_tar h2{
+  color: rgba(255,255,255,0.9);
+  font-size: 16px;
+}
+.datos_serie_tar h1, .datos_serie_tar h2{
+  position: relative;
+  top: 70%;
+  font-weight: 400;
+  margin-left: 5%;
+}
+.serie_dato:hover{
+  cursor: pointer;
+  width: 25%;
+  height: 350px;
+}
+
+.tarjeta{
+  position: relative;
+  width: 90%;
+  height: 110px;
+  margin-left: 5%;
+  top: 50px;
+  text-align: center;
+  border-bottom: 1px solid rgba(155,155,155,0.3);
+}
+.tarjeta h1, .tarjeta h2{
+  position: relative;
+  top: 15px;
+  font-weight: 400;
+  color: rgba(0,0,0,0.8);
+}
+.tarjeta h1{
+  color: rgba(0,0,0,0.6);
+}
+.tarjeta h2{
+  color: rgba(0,0,0,0.5);
+  margin-top: 10px;
+}
+.contacto{
+  position: relative;
+  top: 100px;
+  width: 18%;
+  height: 300px;
+  background: white;
+  box-shadow: 0 0 15px rgba(155,155,155,0.2);
+  float: left;
+  text-align: center;
+  margin-left: 5%;
+  overflow: hidden;
+  left: 25%;
+}
+.contacto img{
+  width: 100%;
+  height: 70%;
+  border: none;
+  -webkit-filter: blur(0.5px);
+}
+.contacto h1{
+  margin-top: 15px;
+  font-weight: 400;
+  font-size: 22px;
+  color: rgba(0,0,0,0.8);
+}
+.contacto h2{
+  margin-top: 5px;
+  font-size: 16px;
+  font-weight: 400;
+  color: rgba(0,0,0,0.6);
+}
+.img_cont{
+  position: absolute;
+  left: 15%;
+  height: 100%;
+  width: 85%;
+  overflow: hidden;
+}
+
+#title{
+  /* Simulation Variables */
+
+position: absolute;
+width: 200px;
+height: 54px;
+left: 18px;
+top: 5px;
+
+font-family: Roboto;
+font-weight: 500;
+line-height: normal;
+font-size: 24px;
+
+color: #000000;
+
+}
+
+.line{
+  position: absolute;
+  width: 100%;
+  height: 0px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #1D5BAB;
+  top: 60px;
+}
+
+#input{
+  /* Input */
+
+position: absolute;
+width: 136px;
+height: 31px;
+left: 22%;
+top: 70px;
+font-family: Roboto;
+font-weight: 500;
+line-height: normal;
+font-size: 24px;
+color: #000000;
+}
+
+/* tar form de asignacion de variables*/
+.tar_form_var{
+  background: white;
+  box-shadow: 0 0 15px rgba(155,155,155,0.2);
+  width: 37.5%;
+  height: auto;
+  position: relative;
+  top: 65px;
+  /* left: 5%; */
+  float: left;
+  margin-left: 5%;
+  margin-top: 40px;
+  padding-bottom: 15px;
+}
+.tar_form_var h2{
+  position: relative;
+  top: 20px;
+  float: left;
+  margin-left: 10%;
+  margin-top: 5px;
+  width: 45%;
+  font-size: 18px;
+  font-weight: 400;
+  color: rgba(0,0,0,0.5);
+  padding-top: 10px;
+}
+.tar_form_var input{
+  text-align: center;
+  float: left;
+  position: relative;
+  top: 20px;
+  width: 30%;
+  margin-left: 5%;
+  height: 30px;
+  margin-top: 5px;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid rgba(155,155,155,0.6);
+  color: rgba(0,0,0,0.5);
+}
+.tar_form_var button{
+  width: 25%;
+  height: 40px;
+  float: right;
+  margin-top:  50px;
+  margin-right: 10%;
+  outline: none;
+  border: 2px solid rgba(44,125,115,1);
+  background: transparent;
+  color: rgba(44,125,115,1);
+  font-weight: 600;
+  font-size: 14px;
+  -webkit-transition: 0.5s all;
+}
+.tar_form_var button:hover{
+  border: 2px solid white;
+  background: rgba(44,125,115,1);
+  color: white;
+  cursor: pointer;
+}
+
+#output{
+  /* Input */
+
+position: absolute;
+width: 136px;
+height: 31px;
+left: 65%;
+top: 70px;
+font-family: Roboto;
+font-weight: 500;
+line-height: normal;
+font-size: 24px;
+color: #000000;
+}
+
+#curr{
+  /* Current */
+position: absolute;
+width: 102px;
+height: 24px;
+left: 48%;
+top: 100px;
+
+font-family: Roboto;
+font-weight: 500;
+line-height: normal;
+font-size: 18px;
+text-align: center;
+
+color: #000000;
+
+}
+
+#las{
+  /* Current */
+position: absolute;
+width: 102px;
+height: 24px;
+left: 48%;
+top: 365px;
+
+font-family: Roboto;
+font-weight: 500;
+line-height: normal;
+font-size: 18px;
+text-align: center;
+
+color: #000000;
+
+}
+/*tar de resultados */
+.tar_form_res{
+  background: white;
+  box-shadow: 0 0 15px rgba(155,155,155,0.2);
+  width: 37.5%;
+  height: 225px;
+  position: relative;
+  top: 90px;
+  /* left: 5%; */
+  float: left;
+  margin-left: 5%;
+  margin-top: 40px;
+}
+.tar_form_res h2{
+  position: relative;
+  top: 20px;
+  float: left;
+  margin-left: 10%;
+  margin-top: 5px;
+  width: 45%;
+  font-size: 18px;
+  font-weight: 400;
+  color: rgba(0,0,0,0.5);
+  padding-top: 10px;
+}
+.tar_form_res input{
+  text-align: center;
+  float: left;
+  position: relative;
+  top: 20px;
+  width: 30%;
+  margin-left: 5%;
+  height: 30px;
+  margin-top: 5px;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid rgba(155,155,155,0.6);
+  color: rgba(0,0,0,0.5);
+}
+.tar_form_res button{
+  width: 25%;
+  height: 40px;
+  float: right;
+  margin-top:  50px;
+  margin-right: 10%;
+  outline: none;
+  border: 2px solid rgba(44,125,115,1);
+  background: transparent;
+  color: rgba(44,125,115,1);
+  font-weight: 600;
+  font-size: 14px;
+  -webkit-transition: 0.5s all;
+}
+.tar_form_res button:hover{
+  border: 2px solid white;
+  background: rgba(44,125,115,1);
+  color: white;
+  cursor: pointer;
+}
+
+.tar_tablas{
+  float: left;
+  margin-top: 80px;
+  margin-left: 10%;
+  width: 80%;
+  height: auto;
+  background: white;
+  box-shadow: 0 0 15px rgba(155,155,155,0.2);
+  margin-bottom: 40px;
+}
+.tar_tablas table, .tar_form table{
+  margin-top: 30px;
+  width: 90%;
+  border-collapse: collapse;
+  margin-left: 5%;
+  text-align: center;
+  margin-bottom: 30px;
+}
+.tar_tablas th, .tar_form th{
+  background: rgba(44,125,115,1);
+  font-size: 16px;
+  font-weight: 600;
+  text-align: center;
+  color: white;
+  padding-top: 2%;
+  padding-bottom: 2%;
+}
+.resultados_uno{
+  height: 40px;
+  border-top: 1px solid rgba(0,0,0,0.1);
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+  color: rgba(0,0,0,0.7);
+  background: transparent;
+}
+.resultados_dos{
+  height: 40px;
+  color: rgba(0,0,0,0.7);
+  background: rgba(44,125,115,0.1);
+}

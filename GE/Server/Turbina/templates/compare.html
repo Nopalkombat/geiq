@@ -1,0 +1,87 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>GE-Gas Turbine Cycle</title>
+	  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+	  <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
+	  <script type="text/javascript" src="{% static 'js/jquery-3.2.0.js' %}"></script>
+	  <script type="text/javascript" src="{% static 'js/funciones.js' %}"></script>
+	  <script type="text/javascript" src="{% static 'js/highcharts.js' %}"></script>
+	  <script type="text/javascript" src="{% static 'js/highcharts-more.js' %}"></script>
+	  <script type="text/javascript" src="{% static 'js/solid-gauge.js' %}"></script>
+</head>
+<body onload="cargarIteraciones()">
+		<div class="img_menu">
+		  <img src="{% static 'media/geLogo.png' %}" id="img_apo_men">
+		</div>
+		<div class="menu">
+		  <img class="img_perfil" src="{% static 'media/geLogo.png' %}" alt="" id="img_apo">
+		  <div class="change_img" id="btn_img">
+		    <img src="{% static 'media/edit.png' %}">
+		    <form id="form_img">
+		      <input type="file" name="file" style="display: none;" id="file">
+		    </form>
+		  </div>
+		  <ul>
+		    <li onclick="window.location='Simulador';"><img src="{% static 'media/home.png' %}" alt=""><h5>Home</h5></li>
+		    <li onclick="window.location='compare';"><img src="{% static 'media/chart.png' %}" alt=""><h5>Compare</h5></li>
+		    <li onclick="window.location='logout.html';"><img src="{% static 'media/exit.png' %}" alt=""><h5>Logout</h5></li>
+		  </ul>
+		</div>
+
+	  <div class="contenido_compare" >
+			<h2 id="ite">Iterations</h2>
+	    <div id = "tar_compare" class="tar_form_var_compare">
+			 <table id = "tabla_errorse">
+		        <tr>
+		          <th width="40%">#Iteracion</th>
+		          <th width="60%">Fecha</th>
+		        </tr>
+		      </table>
+	      <button onclick="calcular_pronostico('<?php echo $_GET['tipo']; ?>');">Calcular</button>
+	    </div>
+			<div class="scroll">
+				<div class="tar_form_res_scroll">
+				<h3	id="itera">Iteration #</h3>
+				<h2>load.G_air</h2><input type          ="text" readonly id="load">
+				<h2>comp.T_stag_out</h2><input type     ="text" readonly id="compt">
+				<h2>comp.p_stag_out</h2><input type     ="text" readonly id ="compp">
+				<h2>turbine.T_stage_out</h2><input type ="text" readonly id ="turbinet">
+				<h2>turbine.p_stage_out</h2><input type ="text" readonly id ="turbinep">
+		    </div>
+		    <div class="tar_form_res_scroll">
+				<h2>load.G_air</h2><input type          ="text" readonly id="load2">
+				<h2>comp.T_stag_out</h2><input type     ="text" readonly id="compt2">
+				<h2>comp.p_stag_out</h2><input type     ="text" readonly id ="compp2">
+				<h2>turbine.T_stage_out</h2><input type ="text" readonly id ="turbinet2">
+				<h2>turbine.p_stage_out</h2><input type ="text" readonly id ="turbinep2">
+		    </div>
+				<div class="tar_form_res_scroll">
+			 <h2>load.G_air</h2><input type          ="text" readonly id="load2">
+			 <h2>comp.T_stag_out</h2><input type     ="text" readonly id="compt2">
+			 <h2>comp.p_stag_out</h2><input type     ="text" readonly id ="compp2">
+			 <h2>turbine.T_stage_out</h2><input type ="text" readonly id ="turbinet2">
+			 <h2>turbine.p_stage_out</h2><input type ="text" readonly id ="turbinep2">
+			 </div>
+			</div>
+			<button type="button" name="vchart" id="vchart">View Chart</button>
+	    <div class="tar_tablas"></div>
+	    <div class="tar_tablas"></div>
+	    <div class="tar_tablas"></div>
+	    <div class="tar_tablas"></div>
+	    <div class="tar_tablas"></div>
+    </div>
+
+     <script>
+    	/*$('#tabla_errorse').append('<tr><td><a href="#">1</a></td><td>fecha1</td></tr>')
+	  	$('#tabla_errorse').append('<tr><td><a href="#">2</a></td><td>fecha2</td></tr>')
+	    $('#tabla_errorse').append('<tr><td><a href="#">3</a></td><td>fecha3</td></tr>')
+	    $('#tabla_errorse').append('<tr><td><a href="#">4</a></td><td>fecha4</td></tr>')*/
+    </script>
+
+    
+</body>
+</html>

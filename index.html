@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>GE-Gas Turbine Cycle</title>
+	  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+	  <link rel="stylesheet" href="estilos.css">
+	  <script type="text/javascript" src="js/jquery-3.2.0.js"></script>
+	  <script type="text/javascript" src="js/funciones.js"></script>
+	  <script type="text/javascript" src="js/highcharts.js"></script>
+	  <script type="text/javascript" src="js/highcharts-more.js"></script>
+	  <script type="text/javascript" src="js/solid-gauge.js"></script>
+</head>
+<body>
+		<div class="img_menu">
+		  <img src="media/geLogo.png" id="img_apo_men">
+		</div>
+		<div class="menu">
+		  <img class="img_perfil" src="media/geLogo.png" alt="" id="img_apo">
+		  <div class="change_img" id="btn_img">
+		    <img src="img/edit.png">
+		    <form id="form_img">
+		      <input type="file" name="file" style="display: none;" id="file">
+		    </form>
+		  </div>
+		  <ul>
+		    <li onclick="window.location='index.html';"><img src="media/home.png" alt=""><h5>Home</h5></li>
+		    <li onclick="window.location='compare.html';"><img src="media/chart.png" alt=""><h5>Compare</h5></li>
+		    <li onclick="window.location='logout.html';"><img src="media/exit.png" alt=""><h5>Logout</h5></li>
+		  </ul>
+		</div>
+
+	  <div class="contenido" style="height: auto;">
+			<h1 id="title">Simulation Varialbres</h1>
+			<div class="line"></div>
+			<h2 id="input">Input</h2>
+	    <div class="tar_form_var">
+			<h2>Total pressure</h2><input type        ="text" id="atmosferap">
+			<h2>Total temperature</h2><input type     ="text" id="atmosferat">
+			<h2>Pressure ratio out/in</h2><input type                ="text" id="sigmain">
+			<h2>Pressure ratio</h2><input type                  ="text" id="compic">
+			<h2>Polytropic efficiency</h2><input type             ="text" id="competa">
+			<h2>Combustion efficiency</h2><input type      ="text" id="combetaburn">
+			<h2>Low Heating Value</h2><input type           ="text" id="combqn">
+			<h2>Output total temperature</h2><input type    ="text" id="combtstagout">
+			<h2>Turbine polytropic efficiency</h2><input type         ="text" id="turbineeta">
+			<h2>Turbine output total pressure</h2><input type         ="text" id="turbinep">
+			<h2>Power demand</h2><input type                 ="text" id="load">
+			<h2>Outlet pressure ratio out/in</h2><input type               ="text" id="sigmaout">
+			<h2>Total temperature of gases at inlet</h2><input type  ="text" id="regenin">
+			<h2>Total temperature of gases at outlet</h2><input type ="text" id="regenout">
+	      <button onclick="calcular_pronostico('<?php echo $_GET['tipo']; ?>');">Calcular</button>
+	    </div>
+			<h2 id="output">Output</h2>
+			<h3 id="curr">Current</h3>
+	    <div class="tar_form_res">
+			<h2>load.G_air</h2><input type          ="text" readonly id="load">
+			<h2>comp.T_stag_out</h2><input type     ="text" readonly id="compt">
+			<h2>comp.p_stag_out</h2><input type     ="text" readonly id ="compp">
+			<h2>turbine.T_stage_out</h2><input type ="text" readonly id ="turbinet">
+			<h2>turbine.p_stage_out</h2><input type ="text" readonly id ="turbinep">
+	    </div>
+			<h3 id="las">Last</h3>
+	    <div class="tar_form_res">
+			<h2>load.G_air</h2><input type          ="text" readonly id="load2">
+			<h2>comp.T_stag_out</h2><input type     ="text" readonly id="compt2">
+			<h2>comp.p_stag_out</h2><input type     ="text" readonly id ="compp2">
+			<h2>turbine.T_stage_out</h2><input type ="text" readonly id ="turbinet2">
+			<h2>turbine.p_stage_out</h2><input type ="text" readonly id ="turbinep2">
+	    </div>
+	    <div class="tar_tablas">
+	    	<p>Aquí van gráficas chidas xdxddxdxdxxdxxdxd</p>
+	    </div>
+	    <div class="tar_tablas"></div>
+	    <div class="tar_tablas"></div>
+	    <div class="tar_tablas"></div>
+	    <div class="tar_tablas"></div>
+    </div>
+</body>
+</html>
